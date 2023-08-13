@@ -104,7 +104,7 @@ const Products = () => {
       <ButtonFilter setIsModalOpen={setIsModalOpen} isFilter={isFilter} />
       {isFilter && !isModalOpen && (
         <div className="flex lg:justify-end">
-          <div className="p-3 bg-slate-100 flex gap-3 rounded-lg mb-3 border-2 border-slate-700 border-dashed w-fit">
+          <div className="p-3 bg-slate-100 flex gap-3 rounded-lg mb-3 border-2 border-slate-700 border-dashed w-fit flex-wrap">
             {[
               { label: "Brand", key: "brand" },
               { label: "Category", key: "category" },

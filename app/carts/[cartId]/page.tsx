@@ -95,7 +95,7 @@ const DetailCart = async ({ params }: DetailCart) => {
       </Text>
       <Table columns={columns} datas={orderedDataProduct} />
       <Link href="/carts">
-        <Button className="w-1/12 mt-6" variant="outlined">
+        <Button className="py-4 px-7 w-fit mt-6" variant="outlined">
           Back
         </Button>
       </Link>
