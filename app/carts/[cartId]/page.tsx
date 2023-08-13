@@ -68,37 +68,39 @@ const DetailCart = async ({ params }: DetailCart) => {
 
   return (
     <>
-      <div className="p-5 rounded-xl border-[3px] bg-slate-100 border-violet-950 grid grid-cols-1 md:grid-cols-2 gap-3 w-full lg:w-1/2 mb-7">
-        <div className="col-span-1">
-          <Text type="body" size="M" className="text-violet-950">
-            {`User : ${detailUser?.firstName} ${detailUser?.lastName}`}
-          </Text>
+      <div className="px-2">
+        <div className="p-5 rounded-xl border-[3px] bg-slate-100 border-violet-950 grid grid-cols-1 md:grid-cols-2 gap-3 w-fit lg:w-1/2 mb-7">
+          <div className="col-span-1">
+            <Text type="body" size="M" className="text-violet-950">
+              {`User : ${detailUser?.firstName} ${detailUser?.lastName}`}
+            </Text>
+          </div>
+          <div className="col-span-1 ">
+            <Text type="body" size="M" className="text-violet-950">
+              {`Quantity Of Item : ${dataCart?.totalQuantity}`}
+            </Text>
+          </div>
+          <div className="col-span-1">
+            <Text type="body" size="M" className="text-violet-950">
+              {`Added On : 20 Jan 2022`}
+            </Text>
+          </div>
+          <div className="col-span-1">
+            <Text type="body" size="M" className="text-violet-950">
+              {`Total Amount : $ ${numberSeparator(dataCart?.total)}`}
+            </Text>
+          </div>
         </div>
-        <div className="col-span-1 ">
-          <Text type="body" size="M" className="text-violet-950">
-            {`Quantity Of Item : ${dataCart?.totalQuantity}`}
-          </Text>
-        </div>
-        <div className="col-span-1">
-          <Text type="body" size="M" className="text-violet-950">
-            {`Added On : 20 Jan 2022`}
-          </Text>
-        </div>
-        <div className="col-span-1">
-          <Text type="body" size="M" className="text-violet-950">
-            {`Total Amount : $ ${numberSeparator(dataCart?.total)}`}
-          </Text>
-        </div>
+        <Text type="subtitle" size="L" className="mb-2">
+          LIST PRODUCTS CART
+        </Text>
+        <Table columns={columns} datas={orderedDataProduct} />
+        <Link href="/carts">
+          <Button className="py-3 px-7 w-fit mt-6" variant="outlined">
+            Back
+          </Button>
+        </Link>
       </div>
-      <Text type="subtitle" size="L" className="mb-2">
-        LIST PRODUCTS CART
-      </Text>
-      <Table columns={columns} datas={orderedDataProduct} />
-      <Link href="/carts">
-        <Button className="py-4 px-7 w-fit mt-6" variant="outlined">
-          Back
-        </Button>
-      </Link>
     </>
   );
 };

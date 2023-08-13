@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC, useCallback, ReactNode } from "react";
+import { FC, useCallback, ReactNode, useEffect, useState } from "react";
 //COMPONENTS
 import Text from "@/components/Text";
 //THIRD PARTY
@@ -36,6 +36,41 @@ const menus = [
 
 const Sidebar: FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const pathName = usePathname();
+  const [isMobile, setIsMobile] = useState(false);
+
+  //SIDE EFFECTS
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 640); // Adjust the breakpoint as needed
+    };
+
+    // Initial check
+    checkIsMobile();
+
+    // Listen for window resize events
+    window.addEventListener("resize", checkIsMobile);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", checkIsMobile);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isMobile && isOpen) {
+      window.scrollTo({
+        top: 0,
+        behavior: "instant",
+      });
+
+      (document.documentElement.style.overflow = "hidden"),
+        (document.body.style.overflow = "hidden");
+    } else {
+      document.documentElement.style.overflow = "visible";
+      document.body.style.overflow = "visible";
+    }
+  }, [isMobile, isOpen]);
+
   //FUNCTIONS
   const toggleOpen = useCallback(() => {
     setIsOpen((current) => !current);
@@ -61,7 +96,10 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
       >
         <CiMenuFries size={30} />
       </div>
-      <section className="p-5 w-fit self-center z-10">
+      <section
+        onClick={isOpen ? () => setIsOpen(false) : () => {}}
+        className="p-5 w-fit self-center z-10"
+      >
         <Link href="/">
           <img
             src="https://cdn.sejutacita.id/6242fd122ac6d40014108347/Others/055db2e8-6aaa-4584-b66d-83457b13f9df.png"
@@ -73,7 +111,11 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
       {menus.map((e: MenuProps) => {
         const isActive = pathName?.split("/")[1] === e?.path;
         return (
-          <Link href={`/${e?.path}`} key={e?.label}>
+          <Link
+            onClick={isOpen ? () => setIsOpen(false) : () => {}}
+            href={`/${e?.path}`}
+            key={e?.label}
+          >
             <nav
               className={clsx(
                 isActive && "bg-gray-200 border-l-[#761CEC]",

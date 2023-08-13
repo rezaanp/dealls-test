@@ -41,16 +41,18 @@ const Carts = () => {
   if (isError) return <p>ERROR API</p>;
   return (
     <>
-      <Text type="subtitle" size="L" className="mb-5 text-slate-600">
-        List Carts
-      </Text>
-      <Table
-        columns={columns}
-        datas={data?.carts}
-        skip={skip}
-        setSkip={setSkip}
-        totalData={data?.total}
-      />
+      <div className="px-2">
+        <Text type="subtitle" size="L" className="mb-5 text-slate-600">
+          List Carts
+        </Text>
+        <Table
+          columns={columns}
+          datas={data?.carts}
+          skip={skip}
+          setSkip={setSkip}
+          totalData={data?.total}
+        />
+      </div>
     </>
   );
 };

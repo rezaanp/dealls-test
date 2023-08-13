@@ -70,13 +70,15 @@ const Table: FC<TableProps> = ({
           </div>
         )}
       </div>
-      <div className="relative w-full overflow-auto rounded-lg flex flex-col">
+      <div className="relative w-full overflow-auto rounded-lg flex flex-col no-scrollbar">
         <table className="w-full border-collapse text-left">
           <thead>
             <tr className="bg-slate-500 text-white">
-              <th className="pl-3 py-2">No.</th>
+              <th className="pl-3 py-2 whitespace-nowrap">No.</th>
               {columns?.map((e: ColumnProps) => (
-                <th key={e?.title}>{e?.title}</th>
+                <th className="whitespace-nowrap" key={e?.title}>
+                  {e?.title}
+                </th>
               ))}
             </tr>
           </thead>
@@ -84,13 +86,13 @@ const Table: FC<TableProps> = ({
             {datas?.length ? (
               datas?.map((data: any, index: number) => (
                 <tr key={data?.id}>
-                  <td className="py-2 pl-3 border-b-2 border-gray-200">
+                  <td className="py-2 pl-3 border-b-2 border-gray-200 whitespace-nowrap">
                     {index + 1}
                   </td>
                   {columns?.map((column: ColumnProps) => (
                     <td
                       key={column?.title}
-                      className="py-2 border-b-2 border-gray-200"
+                      className="py-2 border-b-2 border-gray-200 whitespace-nowrap"
                     >
                       {column?.component ? (
                         <column.component data={data} />

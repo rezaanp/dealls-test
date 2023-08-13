@@ -98,7 +98,7 @@ const Products = () => {
 
   return (
     <>
-      <Text type="subtitle" size="L" className="mb-5 text-slate-600">
+      <Text type="subtitle" size="L" className="mb-5 text-slate-600 px-2">
         List Products
       </Text>
       <ButtonFilter setIsModalOpen={setIsModalOpen} isFilter={isFilter} />
