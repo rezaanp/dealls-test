@@ -47,14 +47,14 @@ const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
       >
         <CiMenuFries size={30} />
       </div>
-      <div className={clsx({ hidden: pathName === "/" }, "hidden lg:block")}>
+      {/* <div className={clsx({ hidden: pathName === "/" }, "hidden lg:block")}>
         <Text type="title" size="XL">
           {`${
             menus?.find((e: MenuProps) => e?.path === pathName.split("/")[1])
               ?.label
           } ${pathName.split("/")[2] ?? ""}`}
         </Text>
-      </div>
+      </div> */}
     </header>
   );
 };
